@@ -41,6 +41,16 @@ jobs:
           ruby-version: 2.6
           bundler-cache: true
 
+      - name: Cache pub dependences
+        uses: actions/cache@v2
+        env:
+          pub-cache-key: pub-cache
+          pub-path: ~/.pub-cache
+        with:
+          path: ${{ env.pub-path }}
+          key: ${{ runner.os }}-build-${{ env.pub-cache-key }}
+          restore-keys: ${{ runner.os }}-build-${{ env.pub-cache-key }}
+
       # run lane pr
       - name: Run Lint and Tests
         run: bundle exec fastlane flutter pr
