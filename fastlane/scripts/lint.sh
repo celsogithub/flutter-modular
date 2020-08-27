@@ -2,7 +2,7 @@
 
 error=false
 
-flutter analyze || true
+flutter analyze || error=true
 
 # fail build if there was an error
 if [ $error == true ];
