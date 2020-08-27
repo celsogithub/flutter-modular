@@ -25,15 +25,15 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Cache pub dependency
+      - name: Cache Fastlane dependencies
         uses: actions/cache@v2
         env:
-          pub-cache-key: pub-cache
-          pub-path: ~/.pub-cache
+          fastlane-cache-key: fastlane-cache
+          fastlane-path: ~/.gem
         with:
-          path: ${{ env.pub-path }}
-          key: ${{ runner.os }}-build-${{ env.pub-cache-key }}
-          restore-keys: ${{ runner.os }}-build-${{ env.pub-cache-key }}
+          path: ${{ env.fastlane-path }}
+          key: ${{ runner.os }}-build-${{ env.fastlane-cache-key }}-${{ hashFiles('Gemfile.lock') }}
+          restore-keys: ${{ runner.os }}-build-${{ env.fastlane-cache-key }}
 
       - name: Install Fastlane
         uses: ruby/setup-ruby@v1
@@ -41,16 +41,16 @@ jobs:
           ruby-version: 2.6
           bundler-cache: true
 
-      - name: Cache pub dependences
+      - name: Cache Flutter dependencies
         uses: actions/cache@v2
         env:
-          pub-cache-key: pub-cache
-          pub-path: ~/.pub-cache
+          flutter-cache-key: flutter-cache
+          flutter-path: ~/.pub-cache
         with:
-          path: ${{ env.pub-path }}
-          key: ${{ runner.os }}-build-${{ env.pub-cache-key }}
-          restore-keys: ${{ runner.os }}-build-${{ env.pub-cache-key }}
+          path: ${{ env.flutter-path }}
+          key: ${{ runner.os }}-build-${{ env.flutter-cache-key }}
+          restore-keys: ${{ runner.os }}-build-${{ env.flutter-cache-key }}
 
-      # run lane pr
+      # run Fastlane lane pr
       - name: Run Lint and Tests
         run: bundle exec fastlane flutter pr
