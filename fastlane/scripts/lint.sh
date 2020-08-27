@@ -2,10 +2,10 @@
 
 error=false
 
-flutter analyze --no-pub || error=true
+flutter analyze || true
 
 # fail build if there was an error
-if [[ "$error" = true ]];
+if [ $error == true ];
 then
     exit -1
 fi
