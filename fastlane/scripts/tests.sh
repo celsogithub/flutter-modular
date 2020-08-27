@@ -2,9 +2,6 @@
 
 error=false
 
-# go to root path
-cd ../
-
 # run unit and widget tests
 runTests () {
   local package_dir=$1
