@@ -7,11 +7,9 @@ on:
       - development
   pull_request:
     paths: 
-      - 'apps/**'
-      - 'features/**'
-      - 'services/**'
-      - 'views/**'
-      - 'core/**'
+      - 'lib/**'
+      - 'server_login/**'
+      - 'firebase_login/**'
       - 'Gemfile'
 
 jobs:
